@@ -1,5 +1,6 @@
 package data.pokemon.implementation.repository
 
+import core.data.states.ResourceState
 import data.pokemon.api.remotedatasource.PokemonRemoteDataSource
 import data.pokemon.mapper.toPokemonList
 import data.pokemon.model.PokemonList
@@ -15,12 +16,17 @@ class PokemonRepositoryImpl(
     private val remoteDataSource: PokemonRemoteDataSource,
 ) : PokemonRepository {
 
-    override fun getPokemonList(): Flow<PokemonList> = flow {
+    override fun getPokemonList(): Flow<ResourceState<PokemonList>> = flow {
         try {
+            emit(ResourceState.Loading)
             val response = remoteDataSource.getPokemonList()
-            emit(response.toPokemonList())
+            emit(ResourceState.FromRemote(
+                data = response.toPokemonList(),
+            ))
         } catch (e: Exception){
-            emit(PokemonList())
+            emit(ResourceState.Error(
+                message = "Some error happens",
+            ))
         }
     }.flowOn(Dispatchers.IO)
 

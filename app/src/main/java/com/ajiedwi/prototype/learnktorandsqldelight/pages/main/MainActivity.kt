@@ -8,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ajiedwi.prototype.learnktorandsqldelight.R
+import core.data.states.ResourceState
 import data.pokemon.di.module.DataPokemonModule
 import kotlinx.coroutines.launch
 
@@ -21,7 +22,19 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.getPokemonResourceState.collect {
-                    Toast.makeText(applicationContext, "Pokemon list size is ${it.count}", Toast.LENGTH_SHORT).show()
+                    when (it){
+                        is ResourceState.Loading -> Unit // set loading view
+                        is ResourceState.FromRemote -> {
+                            it.data.let { data ->
+                                // set view from data
+                                Toast.makeText(applicationContext, "Successfull to collect yeay", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        is ResourceState.Error -> {
+                            Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
+                        }
+                        else -> Unit // do nothing on other state
+                    }
                 }
             }
         }
