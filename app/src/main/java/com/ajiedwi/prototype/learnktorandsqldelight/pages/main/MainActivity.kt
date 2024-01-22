@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import base.BaseApplication
 import com.ajiedwi.prototype.learnktorandsqldelight.R
 import core.data.states.ResourceState
 import data.pokemon.di.module.DataPokemonModule
@@ -14,7 +15,10 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(DataPokemonModule.providePokemonRepository()) }
+    private val dataPokemonModule = DataPokemonModule.apply {
+        setApplicationContext(BaseApplication.applicationContext)
+    }
+    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(dataPokemonModule.providePokemonRepository()) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

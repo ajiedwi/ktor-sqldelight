@@ -1,37 +1,46 @@
 package core.data.utils
 
+
+import android.content.Context
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.android.Android
-import io.ktor.client.features.DefaultRequest
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
-import io.ktor.client.features.observer.ResponseObserver
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
-class KtorHelper {
-    private val TIME_OUT = 6_000
+class KtorHelper(
+    private val context: Context,
+) {
+    companion object {
+        private const val TIME_OUT = 6_000L
+    }
+
     fun getInstance(): HttpClient {
-        val ktorHttpClient = HttpClient(Android) {
+        val ktorHttpClient = HttpClient(OkHttp) {
 
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(Json {
+            install(ContentNegotiation) {
+                json(Json {
                     prettyPrint = true
                     isLenient = true
-                    ignoreUnknownKeys = true
                 })
+            }
 
-                engine {
-                    connectTimeout = TIME_OUT
-                    socketTimeout = TIME_OUT
+            engine {
+                config {
+                    connectTimeout(TIME_OUT, TimeUnit.MILLISECONDS)
                 }
+                addInterceptor(ChuckerHelper(context = context).chuckerInterceptor)
             }
 
             install(Logging) {
@@ -42,12 +51,6 @@ class KtorHelper {
 
                 }
                 level = LogLevel.INFO
-            }
-
-            install(ResponseObserver) {
-                onResponse { response ->
-                    Timber.tag("ktor-http-status").d(response.status.value.toString())
-                }
             }
 
             install(DefaultRequest) {
