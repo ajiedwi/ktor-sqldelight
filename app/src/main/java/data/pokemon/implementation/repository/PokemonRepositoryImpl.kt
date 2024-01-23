@@ -28,6 +28,7 @@ class PokemonRepositoryImpl(
                 message = "Some error happens",
             ))
         }
+        emit(ResourceState.Initialize)
     }.flowOn(Dispatchers.IO)
 
 }

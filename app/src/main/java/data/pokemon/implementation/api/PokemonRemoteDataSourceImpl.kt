@@ -18,8 +18,8 @@ class PokemonRemoteDataSourceImpl(
             url("/pokemon")
             method = HttpMethod.Get
         }
-        val response = httpClient.request(httpRequestBuilder)
-        return response.body<PokemonItemListResponse>()
+        val request = httpClient.request(httpRequestBuilder)
+        return request.body<PokemonItemListResponse>()
     }
 
 }
