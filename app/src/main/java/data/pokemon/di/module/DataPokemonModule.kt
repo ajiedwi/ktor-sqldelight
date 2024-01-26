@@ -1,24 +1,37 @@
 package data.pokemon.di.module
 
-import android.content.Context
-import core.data.utils.KtorHelper
-import data.pokemon.api.remotedatasource.PokemonRemoteDataSource
-import data.pokemon.implementation.api.PokemonRemoteDataSourceImpl
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.api.BaseNetworkProvider
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import data.pokemon.api.shelf.PokemonRequest
 import data.pokemon.implementation.repository.PokemonRepositoryImpl
+import data.pokemon.implementation.shelf.PokemonRequestImpl
 import data.pokemon.repository.PokemonRepository
 import io.ktor.client.HttpClient
+import javax.inject.Singleton
 
+@Module
+@InstallIn(SingletonComponent::class)
 object DataPokemonModule {
 
-    private lateinit var applicationContext: Context
-    fun setApplicationContext(context: Context){
-        applicationContext = context
-    }
+    @Provides
+    @Singleton
+    fun providePokemonRequest(
+        baseNetworkProvider: BaseNetworkProvider,
+    ) : PokemonRequest = PokemonRequestImpl(
+        baseNetworkProvider = baseNetworkProvider,
+    )
 
-    private fun provideHttpClient(): HttpClient = KtorHelper(applicationContext).getInstance()
-
-    private fun providePokemonRemoteDataSource(): PokemonRemoteDataSource = PokemonRemoteDataSourceImpl(httpClient = provideHttpClient())
-
-    fun providePokemonRepository(): PokemonRepository = PokemonRepositoryImpl(remoteDataSource = providePokemonRemoteDataSource())
+    @Provides
+    @Singleton
+    fun providePokemonRepository(
+        httpClient: HttpClient,
+        pokemonRequest: PokemonRequest,
+    ) : PokemonRepository = PokemonRepositoryImpl(
+        httpClient = httpClient,
+        pokemonRequest = pokemonRequest,
+    )
 
 }

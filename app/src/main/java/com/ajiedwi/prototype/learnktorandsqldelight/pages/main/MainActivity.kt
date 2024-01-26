@@ -1,24 +1,21 @@
 package com.ajiedwi.prototype.learnktorandsqldelight.pages.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import base.BaseApplication
 import com.ajiedwi.prototype.learnktorandsqldelight.R
-import core.data.states.ResourceState
-import data.pokemon.di.module.DataPokemonModule
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.states.ResourceState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val dataPokemonModule = DataPokemonModule.apply {
-        setApplicationContext(BaseApplication.applicationContext)
-    }
-    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(dataPokemonModule.providePokemonRepository()) }
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,6 +41,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.getPokemon()
+        val url = com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.RequestUrlBuilder.Builder()
+            .baseUrl("https://pokeapi.co/api/v2//")
+            .path("//////pokemon/:id/:userId/////")
+            .pathParameters(
+                mapOf(
+                    "id" to "123",
+                    "userId" to "example"
+                )
+            )
+            .queryParameters(
+                mapOf(
+                    "show_detail" to "true"
+                )
+            )
+            .build()
 
     }
 }

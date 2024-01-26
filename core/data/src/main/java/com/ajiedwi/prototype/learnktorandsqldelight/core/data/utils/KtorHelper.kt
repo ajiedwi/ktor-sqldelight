@@ -1,4 +1,4 @@
-package core.data.utils
+package com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils
 
 
 import android.content.Context
@@ -24,6 +24,7 @@ class KtorHelper(
 ) {
     companion object {
         private const val TIME_OUT = 6_000L
+        private const val TAG = "ktor-client"
     }
 
     fun getInstance(): HttpClient {
@@ -46,18 +47,16 @@ class KtorHelper(
             install(Logging) {
                 logger = object : Logger {
                     override fun log(message: String) {
-                        Timber.tag("ktor-client").d(message)
+                        Timber.tag(TAG).d(message)
                     }
 
                 }
-                level = LogLevel.INFO
+                level = LogLevel.BODY
             }
 
             install(DefaultRequest) {
                 url {
                     protocol = URLProtocol.HTTPS
-                    host = "pokeapi.co/api/v2"
-
                 }
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
 

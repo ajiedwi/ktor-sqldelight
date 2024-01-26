@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Learn Ktor and SQL Delight"
 include ':app'
+include ':core:data'

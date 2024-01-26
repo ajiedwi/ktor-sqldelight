@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from : '../../default_config.gradle'
+apply from : '../../library_dependency.gradle'
+
+
+android {
+    namespace 'com.ajiedwi.prototype.learnktorandsqldelight.core.data'
+    compileSdk compileAndTargetSdk
+
+    defaultConfig {
+        minSdk 24
+        targetSdk compileAndTargetSdk
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
+}
+
+dependencies {
+
+    implementation ktorClientLibrary
+    implementation ktorSerializationLibrary
+    implementation kotlinxSerializationLibrary
+    implementation ktorClientOkHttpLibrary
+    implementation ktorClientCoreLibrary
+    implementation ktorClientLoggingLibrary
+    implementation ktorClientContentNegotiationLibrary
+
+    debugImplementation chuckerDebugLibrary
+    releaseImplementation chuckerReleaseLibrary
+
+    implementation timberLibrary
+
+    implementation hiltLibrary
+    kapt hiltDaggerKapt
+
+    testImplementation mockkLibrary
+    testImplementation junitLibrary
+    testImplementation assertJLibrary
+    testImplementation androidxCoreTestingLibrary
+    testImplementation kotlinCoroutineTestLibrary
+    testImplementation turbineLibrary
+
+}

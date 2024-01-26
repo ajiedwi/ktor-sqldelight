@@ -1,4 +1,4 @@
-package core.data.utils
+package com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector

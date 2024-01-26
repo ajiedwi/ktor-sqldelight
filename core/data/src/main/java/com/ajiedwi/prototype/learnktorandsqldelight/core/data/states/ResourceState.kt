@@ -1,4 +1,4 @@
-package core.data.states
+package com.ajiedwi.prototype.learnktorandsqldelight.core.data.states
 
 sealed interface ResourceState <out T>{
 

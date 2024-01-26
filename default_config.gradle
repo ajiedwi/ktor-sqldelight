@@ -1,0 +1,6 @@
+ext {
+    minSdkVersion = 24
+    compileAndTargetSdk = 34
+    versionCodeInt = 1
+    versionNameString = "1.0"
+}

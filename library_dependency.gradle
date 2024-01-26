@@ -1,0 +1,60 @@
+ext {
+
+    // core-ktx
+    def coreKtxVersion = "1.12.0"
+    coreKtxLibrary = "androidx.core:core-ktx:$coreKtxVersion"
+
+    def fragmentKtxVersion = "1.6.2"
+    fragmentKtxLibrary = "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
+    // view library
+    def appCompatVersion = "1.6.1"
+    appCompatLibrary = "androidx.appcompat:appcompat:$appCompatVersion"
+    def materialVersion = "1.6.1"
+    materialLibrary = "com.google.android.material:material:$materialVersion"
+    def constraintLayoutVersion ="2.1.4"
+    constraintLayoutLibrary = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    def cardViewVersion = "1.0.0"
+    cardViewLibrary = "androidx.cardview:cardview:$cardViewVersion"
+    def recyclerViewVersion = "1.3.2"
+    recyclerViewLibrary = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+
+    def ktor_version = "2.3.7"
+    ktorClientLibrary = "io.ktor:ktor-client-android:$ktor_version"
+    ktorSerializationLibrary = "io.ktor:ktor-client-serialization:$ktor_version"
+    kotlinxSerializationLibrary = "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    ktorClientOkHttpLibrary =  "io.ktor:ktor-client-okhttp:$ktor_version"
+    ktorClientCoreLibrary = "io.ktor:ktor-client-core:$ktor_version"
+    ktorClientLoggingLibrary = "io.ktor:ktor-client-logging:$ktor_version"
+    ktorClientContentNegotiationLibrary = "io.ktor:ktor-client-content-negotiation:$ktor_version"
+
+    // hilt
+    def hilt_dagger_version = "2.48"
+    hiltLibrary =  "com.google.dagger:hilt-android:$hilt_dagger_version"
+    hiltDaggerKapt =  "com.google.dagger:hilt-android-compiler:$hilt_dagger_version"
+
+    // unit test
+    def junit_version = "4.13.2"
+    junitLibrary =  "junit:junit:$junit_version"
+    def mockk_version = "1.12.4"
+    mockkLibrary = "io.mockk:mockk:$mockk_version"
+    def assertJ_version = "3.24.2"
+    assertJLibrary = "org.assertj:assertj-core:$assertJ_version"
+    def androidx_core_testing_version = "2.2.0"
+    androidxCoreTestingLibrary = "androidx.arch.core:core-testing:$androidx_core_testing_version"
+    def kotlin_coroutine_test_version = "1.7.1"
+    kotlinCoroutineTestLibrary = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_coroutine_test_version"
+    def turbineVersion = "1.0.0"
+    turbineLibrary = "app.cash.turbine:turbine:$turbineVersion"
+
+
+    // timber
+    def timber_version = "5.0.1"
+    timberLibrary = "com.jakewharton.timber:timber:$timber_version"
+
+    // chucker
+    def chucker_version = "4.0.0"
+    chuckerDebugLibrary = "com.github.chuckerteam.chucker:library:$chucker_version"
+    chuckerReleaseLibrary = "com.github.chuckerteam.chucker:library-no-op:$chucker_version"
+
+}
