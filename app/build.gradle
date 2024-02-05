@@ -1,7 +1,14 @@
 plugins {
     id "com.android.application"
     id "org.jetbrains.kotlin.android"
+    id "kotlinx-serialization"
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
+
+apply from : '../library_dependency.gradle'
+apply from : '../default_config.gradle'
+
 
 android {
     namespace 'com.ajiedwi.prototype.learnktorandsqldelight'
@@ -11,8 +18,8 @@ android {
         applicationId "com.ajiedwi.prototype.learnktorandsqldelight"
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode versionCodeInt
+        versionName versionNameString
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,13 +37,37 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
 }
 
 dependencies {
 
-    implementation "androidx.core:core-ktx:1.12.0"
-    implementation "androidx.appcompat:appcompat-resources:1.6.1"
-    implementation "com.google.android.material:material:1.11.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation coreKtxLibrary
+    implementation appCompatLibrary
+    implementation materialLibrary
+    implementation constraintLayoutLibrary
 
+    // lifecycle
+    implementation fragmentKtxLibrary
+
+    // timber
+    implementation timberLibrary
+
+
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-android-compiler:2.48"
+
+    implementation ktorClientLibrary
+    implementation ktorSerializationLibrary
+    implementation kotlinxSerializationLibrary
+    implementation ktorClientOkHttpLibrary
+    implementation ktorClientCoreLibrary
+    implementation ktorClientLoggingLibrary
+    implementation ktorClientContentNegotiationLibrary
+
+    implementation project(":core:data")
 }
