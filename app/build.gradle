@@ -39,7 +39,11 @@ android {
     }
     buildFeatures {
         buildConfig true
-        viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
 }
 
@@ -56,10 +60,23 @@ dependencies {
     // timber
     implementation timberLibrary
 
+    // Dagger - Hilt
+    implementation hiltLibrary
+    kapt hiltDaggerKapt
 
-    //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:2.48"
-    kapt "com.google.dagger:hilt-android-compiler:2.48"
+    // compose
+    implementation platform(composeBom)
+    androidTestImplementation platform(composeBom)
+
+    implementation composeMaterial3
+    implementation composePreview
+    debugImplementation debugComposePreview
+    implementation activityCompose
+    implementation composeWindowsSizeClass
+    implementation composeNavigation
+
+    // coil
+    implementation coilLibrary
 
     implementation ktorClientLibrary
     implementation ktorSerializationLibrary
@@ -70,4 +87,8 @@ dependencies {
     implementation ktorClientContentNegotiationLibrary
 
     implementation project(":core:data")
+    implementation project(":core:component")
+
+    implementation project(":feature:pokemon")
+
 }

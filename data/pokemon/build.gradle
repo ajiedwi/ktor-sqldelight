@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id "kotlinx-serialization"
+}
+
+apply from : '../../default_config.gradle'
+apply from : '../../library_dependency.gradle'
+
+android {
+    namespace 'com.ajiedwi.prototype.learnktorandsqldelight.data.pokemon'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation ktorSerializationLibrary
+    implementation kotlinxSerializationLibrary
+    implementation timberLibrary
+
+    implementation hiltLibrary
+    kapt hiltDaggerKapt
+
+    implementation project(":core:data")
+}

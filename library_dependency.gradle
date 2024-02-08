@@ -32,6 +32,11 @@ ext {
     def hilt_dagger_version = "2.48"
     hiltLibrary =  "com.google.dagger:hilt-android:$hilt_dagger_version"
     hiltDaggerKapt =  "com.google.dagger:hilt-android-compiler:$hilt_dagger_version"
+    def hilt_lifecycle_view_model_version = "1.0.0-alpha03"
+    hiltLifecycleViewModelLibrary = "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_view_model_version"
+    hiltLifecycleViewModelLibraryKapt = "androidx.hilt:hilt-compiler:$hilt_lifecycle_view_model_version"
+    def hilt_navigation_compose_version = "1.1.0"
+    hiltNavigationComposeLibrary = "androidx.hilt:hilt-navigation-compose:$hilt_navigation_compose_version"
 
     // unit test
     def junit_version = "4.13.2"
@@ -56,5 +61,21 @@ ext {
     def chucker_version = "4.0.0"
     chuckerDebugLibrary = "com.github.chuckerteam.chucker:library:$chucker_version"
     chuckerReleaseLibrary = "com.github.chuckerteam.chucker:library-no-op:$chucker_version"
+
+    // compose
+    def compose_bom_version = "2024.01.00"
+    composeBom = "androidx.compose:compose-bom:$compose_bom_version"
+    composeMaterial3 = "androidx.compose.material3:material3"
+    composePreview = "androidx.compose.ui:ui-tooling-preview"
+    debugComposePreview = "androidx.compose.ui:ui-tooling"
+    composeWindowsSizeClass = "androidx.compose.material3:material3-window-size-class"
+    def activity_compose_version = "1.8.2"
+    activityCompose = "androidx.activity:activity-compose:$activity_compose_version"
+    def nav_version = "2.7.6"
+    composeNavigation =  "androidx.navigation:navigation-compose:$nav_version"
+
+    // coil
+    def coil_version = "2.5.0"
+    coilLibrary = "io.coil-kt:coil-compose:$coil_version"
 
 }

@@ -1,0 +1,51 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from : '../../default_config.gradle'
+apply from : '../../library_dependency.gradle'
+
+
+android {
+    namespace 'com.ajiedwi.prototype.learnktorandsqldelight.core.component'
+    compileSdk compileAndTargetSdk
+
+    defaultConfig {
+        minSdk 24
+        targetSdk compileAndTargetSdk
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        buildConfig true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
+}
+
+dependencies {
+
+    // compose
+    implementation platform(composeBom)
+    androidTestImplementation platform(composeBom)
+
+    implementation composeMaterial3
+    implementation composePreview
+    debugImplementation debugComposePreview
+    implementation activityCompose
+    implementation composeWindowsSizeClass
+
+    // coil
+    implementation coilLibrary
+
+}

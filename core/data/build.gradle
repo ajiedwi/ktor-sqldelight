@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id "kotlinx-serialization"
 }
 
 apply from : '../../default_config.gradle'
@@ -38,7 +39,6 @@ android {
 
 dependencies {
 
-    implementation ktorClientLibrary
     implementation ktorSerializationLibrary
     implementation kotlinxSerializationLibrary
     implementation ktorClientOkHttpLibrary
