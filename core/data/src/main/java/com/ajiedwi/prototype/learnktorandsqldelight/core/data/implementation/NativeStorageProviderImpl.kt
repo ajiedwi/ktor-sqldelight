@@ -1,6 +1,6 @@
 package com.ajiedwi.prototype.learnktorandsqldelight.core.data.implementation
 
-import com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.api.NativeStorageProvider
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.api.NativeStorageProvider
 
 class NativeStorageProviderImpl: NativeStorageProvider {
 

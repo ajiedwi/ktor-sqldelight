@@ -1,6 +1,8 @@
 package com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.api
 
 import android.content.Context
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.api.BaseNetworkProvider
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.api.NativeStorageProvider
 import com.ajiedwi.prototype.learnktorandsqldelight.core.data.implementation.BaseNetworkProviderImpl
 import io.mockk.MockKAnnotations
 import io.mockk.every

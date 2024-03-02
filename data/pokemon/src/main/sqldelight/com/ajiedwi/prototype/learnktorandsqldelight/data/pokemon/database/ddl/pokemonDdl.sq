@@ -1,0 +1,7 @@
+-- CREATE TABLE pokemonEntity (
+--     "id" INTEGER PRIMARY KEY NOT NULL,
+--     "name" TEXT NOT NULL,
+--     "types" TEXT NOT NULL,
+--     "sprite_url" TEXT NOT NULL,
+--     "fetched_at" TEXT NOT NULL
+-- );

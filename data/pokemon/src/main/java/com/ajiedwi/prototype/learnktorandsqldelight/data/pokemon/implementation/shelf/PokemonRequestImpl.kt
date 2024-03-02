@@ -1,6 +1,6 @@
 package com.ajiedwi.prototype.learnktorandsqldelight.data.pokemon.implementation.shelf
 
-import com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.api.BaseNetworkProvider
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.api.BaseNetworkProvider
 import com.ajiedwi.prototype.learnktorandsqldelight.data.pokemon.api.shelf.PokemonRequest
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.header
@@ -13,14 +13,22 @@ class PokemonRequestImpl(
     private val baseNetworkProvider: BaseNetworkProvider,
 ): PokemonRequest {
 
-    override fun getPokemonListRequest(): HttpRequestBuilder = HttpRequestBuilder().apply {
+    override fun getPokemonListRequest(offset: String): HttpRequestBuilder = HttpRequestBuilder().apply {
         method = HttpMethod.Get
         url {
             host = baseNetworkProvider.getBaseUrl("POKEMON_BASE_URL")
-            url("/pokemon")
+            url("/pokemon?offset=$offset")
         }
         headers {
 //            header(HttpHeaders.Authorization, baseNetworkProvider.getBearerToken("POKEMON_BEARER_TOKEN"))
+        }
+    }
+
+    override fun getPokemonDetailRequest(id: String): HttpRequestBuilder = HttpRequestBuilder().apply {
+        method = HttpMethod.Get
+        url {
+            host = baseNetworkProvider.getBaseUrl("POKEMON_BASE_URL")
+            url("/pokemon/$id")
         }
     }
 }

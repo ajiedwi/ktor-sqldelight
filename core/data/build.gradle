@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id "kotlinx-serialization"
+    id 'app.cash.sqldelight'
 }
 
 apply from : '../../default_config.gradle'
@@ -61,4 +62,5 @@ dependencies {
     testImplementation kotlinCoroutineTestLibrary
     testImplementation turbineLibrary
 
+    implementation sqlDelightDriverLibrary
 }

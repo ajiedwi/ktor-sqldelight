@@ -26,7 +26,6 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        buildConfig true
         compose true
     }
 
@@ -39,13 +38,15 @@ dependencies {
 
     // lifecycle
     implementation fragmentKtxLibrary
+    implementation lifecycleRuntimeComposeLibrary
 
     //Dagger - Hilt
     implementation hiltLibrary
     kapt hiltDaggerKapt
-//    implementation hiltLifecycleViewModelLibrary
-//    kapt hiltLifecycleViewModelLibraryKapt
     implementation hiltNavigationComposeLibrary
+
+    // ui
+    implementation systemUiControllerLibrary
 
     // compose
     implementation platform(composeBom)
@@ -57,13 +58,17 @@ dependencies {
     implementation activityCompose
     implementation composeWindowsSizeClass
     implementation composeNavigation
+    implementation constraintJetpackLibrary
+
+    // timber
+    implementation timberLibrary
 
     // coil
     implementation coilLibrary
 
     implementation project(":core:data")
     implementation project(":core:component")
+    implementation project(":common")
 
     implementation project(":data:pokemon")
-
 }

@@ -4,6 +4,10 @@ sealed interface ResourceState <out T>{
 
     data object Initialize: ResourceState<Nothing>
     data object Loading: ResourceState<Nothing>
+    class FromLocal<T>(
+        val data: T,
+        val message: String = "",
+    ): ResourceState<T>
     class FromRemote<T>(
         val data: T,
         val message: String = "",

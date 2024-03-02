@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="moves">Moves</string>
+    <string name="abilities">Abilities</string>
+    <string name="items">Items</string>
+    <string name="locations">Locations</string>
+    <string name="type_charts">Type Charts</string>
+</resources>

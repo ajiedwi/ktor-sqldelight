@@ -4,6 +4,8 @@ import io.ktor.client.request.HttpRequestBuilder
 
 interface PokemonRequest {
 
-    fun getPokemonListRequest(): HttpRequestBuilder
+    fun getPokemonListRequest(offset: String): HttpRequestBuilder
+
+    fun getPokemonDetailRequest(id: String): HttpRequestBuilder
 
 }

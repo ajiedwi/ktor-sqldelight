@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="shamrock">#46d1b2</color>
+    <color name="froly">#f7796b</color>
+    <color name="wild_sand">#F6F6F6</color>
+    <color name="malibu">#6fc2f9</color>
+    <color name="bright_sun">#ffcf4a</color>
+    <color name="affair">#7d518c</color>
+    <color name="coral_tree">#b2746c</color>
+    <color name="alizarin_crimson">#e31b23</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="white_25">#40FFFFFF</color>
+</resources>

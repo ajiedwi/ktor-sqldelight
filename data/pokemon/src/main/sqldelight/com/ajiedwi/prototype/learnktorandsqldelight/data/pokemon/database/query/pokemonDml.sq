@@ -1,0 +1,24 @@
+-- queries for pokemonEntity
+
+selectAll:
+SELECT *
+FROM pokemonEntity;
+
+insertEntity:
+INSERT INTO pokemonEntity
+VALUES ?;
+
+selectOneById:
+SELECT *
+FROM pokemonEntity
+WHERE id = :id;
+
+selectFavorite:
+SELECT *
+FROM pokemonEntity
+WHERE is_favorite = 1;
+
+updateFavoriteById:
+UPDATE pokemonEntity
+SET is_favorite = :isFavorite
+WHERE id = :id;

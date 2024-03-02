@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="pokemon_widget_grid_mode_height">96dp</dimen>
+</resources>

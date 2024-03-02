@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id "kotlinx-serialization"
+    id 'app.cash.sqldelight'
 }
 
 apply from : '../../default_config.gradle'
@@ -23,6 +24,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    sqldelight {
+        databases {
+            create("PokemonDatabase") {
+                packageName.set("com.ajiedwi.prototype.learnktorandsqldelight.data.pokemon.database")
+                schemaOutputDirectory.set(file("src/main/sqldelight/databases"))
+                deriveSchemaFromMigrations.set(true)
+            }
+        }
+    }
 }
 
 dependencies {
@@ -35,4 +45,7 @@ dependencies {
     kapt hiltDaggerKapt
 
     implementation project(":core:data")
+    implementation project(":common")
+
+    implementation sqlDelightDriverLibrary
 }

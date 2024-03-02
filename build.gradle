@@ -6,4 +6,5 @@ plugins {
     id 'com.google.dagger.hilt.android' version '2.48' apply false
     id 'com.android.library' version '7.4.2' apply false
     id 'org.jetbrains.kotlinx.kover' version '0.5.0' apply false
+    id 'app.cash.sqldelight' version '2.0.0-alpha05' apply false
 }

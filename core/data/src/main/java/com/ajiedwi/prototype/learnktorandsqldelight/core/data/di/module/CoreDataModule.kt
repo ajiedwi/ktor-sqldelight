@@ -4,8 +4,10 @@ import android.content.Context
 import com.ajiedwi.prototype.learnktorandsqldelight.core.data.implementation.BaseNetworkProviderImpl
 import com.ajiedwi.prototype.learnktorandsqldelight.core.data.implementation.NativeStorageProviderImpl
 import com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.KtorHelper
-import com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.api.NativeStorageProvider
-import com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.api.BaseNetworkProvider
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.api.NativeStorageProvider
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.api.BaseNetworkProvider
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.api.DateProvider
+import com.ajiedwi.prototype.learnktorandsqldelight.core.data.implementation.DateProviderImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,6 +43,10 @@ object CoreDataModule {
     ): HttpClient = KtorHelper(
         context = context,
     ).getInstance()
+
+    @Provides
+    @Singleton
+    fun provideDateProvider(): DateProvider = DateProviderImpl()
 
 
 }

@@ -1,11 +1,8 @@
 package com.ajiedwi.prototype.learnktorandsqldelight.pages.main
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -31,10 +28,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -42,17 +35,14 @@ import androidx.navigation.compose.rememberNavController
 import com.ajiedwi.prototype.learnktorandsqldelight.core.component.R
 import com.ajiedwi.prototype.learnktorandsqldelight.core.component.compose.theme.CustomTheme
 import com.ajiedwi.prototype.learnktorandsqldelight.core.component.extension.getDimensionInt
-import com.ajiedwi.prototype.learnktorandsqldelight.core.data.states.ResourceState
 import com.ajiedwi.prototype.learnktorandsqldelight.feature.pokemon.router.PokemonRoute
 import com.ajiedwi.prototype.learnktorandsqldelight.widget.CategoryCard
 import dagger.hilt.android.AndroidEntryPoint
 import data.category.Category
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-//    private val viewModel: MainViewModel by viewModels()
     private val categories = listOf(
         Category.POKEMON,
     )
@@ -65,7 +55,9 @@ class MainActivity : AppCompatActivity() {
                 val windowsSize = calculateWindowSizeClass(this)
                 NavHost(
                     navController = navController,
-                    startDestination = "categories"
+//                    startDestination = "pokemon",
+                    startDestination = "pokedex"
+
                 ) {
                     composable("categories") {
                         MainActivityUI(
@@ -80,26 +72,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-//        lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED){
-//                viewModel.getPokemonResourceState.collect {
-//                    when (it){
-//                        is ResourceState.Loading -> Unit // set loading view
-//                        is ResourceState.FromRemote -> {
-//                            it.data.let { data ->
-//                                // set view from data
-//                                Toast.makeText(applicationContext, "Successfull to collect yeay", Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//                        is ResourceState.Error -> {
-//                            Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
-//                        }
-//                        else -> Unit // do nothing on other state
-//                    }
-//                }
-//            }
-//        }
     }
 
     @Composable

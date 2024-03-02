@@ -1,4 +1,4 @@
-package com.ajiedwi.prototype.learnktorandsqldelight.core.data.utils.api
+package com.ajiedwi.prototype.learnktorandsqldelight.core.data.api
 
 interface NativeStorageProvider {
 
